@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{movie.title}}</h4>
+  <div>
+    <span class="modal-action modal-edit badge badge-pill badge-warning" (click)="toggleEditMode()"><i class="fas fa-pen"></i></span>
+    <span class="modal-action modal-delete badge badge-pill badge-warning" (click)="deleteMovie()"><i class="fas fa-trash"></i></span>
+  </div>
+</div>
+<div class="modal-body" [class.blur]="editMode">
+  <div class="row">
+    <div class="col-sm-6 modal-body-img">
+      <img class="shadow-lg" [src]="movie.photo">
+    </div>
+    <div class="col-sm-6 modal-data-container">
+      <div class="modal-data">
+        <p>Release date: <span>{{movie.year}}</span></p>
+      </div>
+      <div class="modal-data">
+        <p>Directed by: <span>{{movie.director}}</span></p>
+      </div>
+      <div class="modal-data">
+        <p>Genre: <span>{{movie.genre}}</span></p>
+      </div>
+      <div class="modal-data">
+          <p>Runtime: <span>{{movie.runtime}} min</span></p>
+        </div>
+      <div class="modal-data">
+        <p>Overview: <span>{{movie.description | slice:0:200}}</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="editMode" class="modal-body">
+  <app-movie-editor class="newModal" (movieEdited)="editMovie($event)" [movie]="curentEditedMovie"></app-movie-editor>
+</div>
