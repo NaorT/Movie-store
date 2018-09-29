@@ -12,7 +12,3 @@ export class TitlePipe implements PipeTransform {
     }
 }
 
-
-// var val = '@@THIS is a MoviE!!';
-// val = val.replace(/[^A-Za-z]/g, " ");
-// var title = val.toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ');

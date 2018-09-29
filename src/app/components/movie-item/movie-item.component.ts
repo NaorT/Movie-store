@@ -12,8 +12,8 @@ export class MovieItemComponent implements OnInit {
   @Input() movie: Movie;
   @Output() movieEdited: EventEmitter<Movie> = new EventEmitter<Movie>();
   @Output() trailerClicked: EventEmitter<Movie> = new EventEmitter<Movie>();
-
   movieImgSrc: string;
+  
   constructor(private imageService: ImageService) { }
 
   ngOnInit() {

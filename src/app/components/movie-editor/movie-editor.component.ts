@@ -16,6 +16,7 @@ export class MovieEditorComponent implements OnInit {
   isDateValid: boolean
   titleHintMsg: string;
   dateHintMsg: string;
+  
   constructor(private dateService: DateService,
                private movieService: MovieService,
                private modalService: NgbModal) { }

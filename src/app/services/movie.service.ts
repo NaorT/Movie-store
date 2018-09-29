@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ImageService } from './image.service';
 
-// const API_KEY: string = '9bf472f00f24a33c253c48c4111f8f9a';
-// const BASE_URL: string = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&language=en-US&page=2`
-
+const API_KEY: string = '?api_key=9bf472f00f24a33c253c48c4111f8f9a';
+const BASE_URL: string = `https://api.themoviedb.org/3/movie`
+const DEFAULT_IMAGE: string = '3IGbjc5ZC5yxim5W0sFING2kdcz.jpg';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,6 @@ export class MovieService {
       director: this.getDirector(movieFromServer.credits.crew),
       genre: movieFromServer.genres[0].name,
       id: movieFromServer.id,
-      // photo: this.imageService.getImage('w154',movieFromServer.poster_path),
       photo: movieFromServer.poster_path,
       runtime: movieFromServer.runtime,
       title: movieFromServer.title,
@@ -87,23 +86,23 @@ export class MovieService {
   }
 
   getMovieById(movieId: number): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=9bf472f00f24a33c253c48c4111f8f9a&append_to_response=credits`)
+    return this.http.get(`${BASE_URL}/${movieId}${API_KEY}&append_to_response=credits`)
   }
 
   getMoviesByType(type: SearchType): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${type}?api_key=9bf472f00f24a33c253c48c4111f8f9a`);
+    return this.http.get(`${BASE_URL}/${type}${API_KEY}`);
   }
 
   getMovieTrailer(movieId: string): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=9bf472f00f24a33c253c48c4111f8f9a`);
+    return this.http.get(`${BASE_URL}/${movieId}/videos${API_KEY}`);
   }
 
   setNewMovie(movie: Movie): Movie {
     movie.id = Math.floor(Math.random() * 100) + this.movies.length;
     movie.rating = Math.floor(Math.random() * 10) + 1;
     movie.runtime = '130',
-    movie.photo ='3IGbjc5ZC5yxim5W0sFING2kdcz.jpg';
+      movie.photo = DEFAULT_IMAGE;
     return movie;
   }
-  
+
 }

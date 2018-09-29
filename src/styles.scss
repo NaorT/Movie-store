@@ -134,6 +134,12 @@ nav {
     }
 }
 
+drag-scroll {
+    height: 285px;
+    width: 100%;
+    text-align: center;
+}
+
 app-movie-item {
     cursor: pointer;
     .movie-img {
@@ -231,5 +237,3 @@ app-movie-modal {
     padding-bottom: 10px;
     padding-top: 10px;
 }
-
-
