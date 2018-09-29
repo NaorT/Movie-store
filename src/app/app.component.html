@@ -9,7 +9,7 @@
 </nav>
 
 <section class="container-fluid col-mb">
-  <drag-scroll style="height: 285px; width: 100%; text-align: center;">
+  <drag-scroll>
     <img *ngFor="let movie of movieListForView" drag-scroll-item [src]="imageService.getImage('w185',movie.photo)" />
   </drag-scroll>
 </section>
