@@ -15,10 +15,10 @@
 
 <div *ngIf="!wantToDelete" class="modal-body">
   <div class="row">
-    <div class="col-sm-5 col-sm-12 modal-body-img" [class.blur]="editMode">
+    <div class="col-sm-5 modal-body-img" [class.blur]="editMode">
       <img class="shadow-lg" [src]="movieImgSrc">
     </div>
-    <div class="col-sm-7 col-sm-12">
+    <div class="col-sm-7">
       <div class="modal-data" [class.blur]="editMode">
         <p>Release date: <span>{{movie.year}}</span></p>
       </div>
