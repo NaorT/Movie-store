@@ -1,5 +1,5 @@
 <div *ngIf="!wantToDelete" class="modal-header">
-  <h4 class="modal-title">{{movie.title | titlePipe: movie.title}}</h4>
+  <h3 class="modal-title">{{movie.title | titlePipe: movie.title}}</h3>
   <div class="modal-action">
     <button class="btn-action modal-edit" (click)="toggleEditMode()"><i class="fas fa-pen"></i></button>
     <button class="btn-action modal-delete" (click)="showConfirmation()"><i class="fas fa-trash"></i></button>
@@ -15,7 +15,7 @@
 
 <div *ngIf="!wantToDelete" class="modal-body">
   <div class="row">
-    <div class="col-md-5 modal-body-img" [class.blur]="editMode">
+    <div class="col-md-5 d-none d-md-none d-sm-none d-lg-block d-xl-block modal-body-img" [class.blur]="editMode">
       <img class="shadow-lg" [src]="movieImgSrc">
     </div>
     <div class="col-md-7">
