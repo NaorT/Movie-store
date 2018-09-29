@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col">
         <img class="movie-img" [src]="movieImgSrc" (click)="editMovie()">
-        <button class="btn-action btn-play" (click)="startTrailer(movie.id)"><i class="fas fa-play"></i></button>
+        <button class="btn-action btn-play" (click)="startTrailer()"><i class="fas fa-play"></i></button>
         <button class="btn-action btn-rating">{{movie.rating}}</button>
         <p class="movie-title">{{movie.title | titlePipe: movie.title}}</p>
         <p class="movie-genre">{{movie.genre | titlePipe: movie.genre}}</p>
