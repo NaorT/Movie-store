@@ -31,6 +31,7 @@ export class MovieModalComponent implements OnInit {
     this.movieService.getMovieTrailer(this.movie.id.toString()).subscribe((data: any) => {
       if (data.results && data.results.length > 0) {
         this.trailerPath = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${data.results[0].key}`);
+        this.isTrailerShown = true;
       }
     });
     this.curentEditedMovie = JSON.parse(JSON.stringify(this.movie));

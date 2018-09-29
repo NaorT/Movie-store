@@ -130,8 +130,7 @@ nav {
         }
     }
     .new-book-btn {
-        border-radius: 500px;
-        padding: 10px;
+        cursor: pointer;
     }
 }
 
@@ -222,6 +221,10 @@ app-movie-modal {
             position: fixed;
         }
     }
+    .trailer-not-available {
+        text-align: center;
+        margin-top: 60px;
+    }
 }
 
 .delete-confirmation {
@@ -229,3 +232,5 @@ app-movie-modal {
     padding-bottom: 10px;
     padding-top: 10px;
 }
+
+

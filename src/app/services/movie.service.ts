@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Movie, SearchType } from '../models';
+import { Movie, SearchType, imgSize } from '../models';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ImageService } from './image.service';
@@ -102,7 +102,7 @@ export class MovieService {
     movie.id = Math.floor(Math.random() * 100) + this.movies.length;
     movie.rating = Math.floor(Math.random() * 10) + 1;
     movie.runtime = '130',
-    movie.photo = "https://image.tmdb.org/t/p/w154/3IGbjc5ZC5yxim5W0sFING2kdcz.jpg";
+    movie.photo ='3IGbjc5ZC5yxim5W0sFING2kdcz.jpg';
     return movie;
   }
   

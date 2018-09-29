@@ -15,10 +15,10 @@
 
 <div *ngIf="!wantToDelete" class="modal-body">
   <div class="row">
-    <div class="col-sm-5 modal-body-img" [class.blur]="editMode">
+    <div class="col-md-5 modal-body-img" [class.blur]="editMode">
       <img class="shadow-lg" [src]="movieImgSrc">
     </div>
-    <div class="col-sm-7">
+    <div class="col-md-7">
       <div class="modal-data" [class.blur]="editMode">
         <p>Release date: <span>{{movie.year}}</span></p>
       </div>
@@ -40,6 +40,9 @@
       <div *ngIf="isTrailerShown" class="modal-trailer">
         <button class="btn btn-info btn-trailer" (click)="closeTrailer()"><i class="fas fa-times"></i></button>
         <iframe *ngIf="trailerPath" width="420" height="300" [src]='trailerPath' frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="trailer-not-available" *ngIf="!trailerPath">
+        <h5>Trailer is not available right now</h5>
       </div>
     </div>
   </div>
