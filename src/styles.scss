@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
-
-
 body {
-    background-image: linear-gradient(30deg, #828989 10%, #2D3840 90%);
+    background: linear-gradient(30deg, #828989 10%, #2D3840 90%);
     font-family: 'Raleway', 'Arial';
 }
 
@@ -11,9 +9,53 @@ p {
     padding: 0;
 }
 
+.trailer {
+    position: fixed;
+    bottom: 0;
+    right: 0px;
+    background-color: #828989;
+    .btn-trailer {
+        border-radius: 500px;
+        position: fixed;
+        right: 400px;
+    }
+    .not-available {
+        width: 420px;
+        text-align: center;
+    }
+}
+
+form {
+    .form-group {
+        .control-label {
+            margin-bottom: 0;
+        }
+        input {
+            font-size: 13px;
+        }
+    }
+}
+
+.btn-modal {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.btn-action {
+    border-radius: 500px;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    border: none;
+    outline: none;
+}
+
 .blur {
     filter: blur(3px);
     transition: 0.5s;
+    padding-bottom: 0;
 }
 
 .col,
@@ -26,17 +68,21 @@ p {
     margin-bottom: 60px;
 }
 
-.badge {
-    &.badge-pill {
-        &.badge-warning {
-            border-radius: 500px;
-            position: relative;
-            top: 80px;
-            right: 25px;
-            padding: 17px;
-            font-size: 14px;
-        }
-    }
+.is-invalid {
+    border: 1px solid red;
+    border-left: 5px solid red;
+    transition: 0.3s;
+}
+
+.is-valid {
+    border: 1px solid #28a745;
+    border-left: 5px solid #28a745;
+    transition: 0.3s;
+}
+
+.help-block {
+    color: red;
+    font-weight: 500;
 }
 
 .header {
@@ -60,6 +106,7 @@ nav {
         .breadcrumb {
             background-color: transparent;
             text-decoration: none;
+            margin-bottom: 0;
             .breadcrumb-item {
                 color: white;
                 text-decoration: none;
@@ -68,6 +115,11 @@ nav {
                 .movie-type {
                     text-decoration: none;
                     color: white;
+                    &:hover {
+                        border-bottom: 2px solid gold;
+                        transition: 0.2s;
+                        padding-bottom: 2px;
+                    }
                 }
                 &:hover {
                     text-decoration: none;
@@ -92,11 +144,16 @@ app-movie-item {
             transition: 0.3s;
         }
     }
-    .movie-rating {
-        width: 50px;
-        height: 50px;
-        color: white;
-        font-weight: bold;
+    .btn-play {
+        cursor: pointer;
+        top: 30px;
+        left: -22px;
+        background-color: #17a2b8;
+    }
+    .btn-rating {
+        top: 75px;
+        left: -60px;
+        background-color: gold;
     }
     .movie-title {
         color: white;
@@ -104,6 +161,8 @@ app-movie-item {
         font-weight: bold;
         text-overflow: ellipsis;
         font-size: 15px;
+        width: 190px;
+        word-break: break-word;
     }
     .movie-genre {
         color: #d3d3d387;
@@ -114,55 +173,58 @@ app-movie-item {
 app-movie-modal {
     .modal-header {
         border-bottom: none;
+        .modal-title {
+            word-break: break-word;
+            width: 80%;
+        }
         .modal-action {
-            cursor: pointer;
-            width: 50px;
-            height: 50px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            &.modal-edit {
+            .modal-delete,
+            .modal-edit,
+            .modal-play {
+                cursor: pointer;
                 margin-right: 5px;
             }
-            &.modal-delete {
+            .modal-delete {
                 background-color: #2D3840;
             }
-            &.badge-warning {
-                position: relative;
-                top: 0;
-                left: 0;
+            .modal-edit {
+                background-color: gold;
+            }
+            .modal-play {
+                background-color: #17a2b8;
             }
         }
     }
     .modal-body {
-        .modal-body-img{
+        .modal-body-img {
             max-width: 40%;
+            position: relative;
+            left: -100px;
         }
-        &.mobile-data-container {
-            word-break: break-word;
-            max-width: 50%;
-            &.modal-data {
-                p {
-                    margin-bottom: 5px;
-                    font-weight: bold;
-                    span {
-                        font-weight: 300;
-                    }
+        .modal-data {
+            p {
+                margin-bottom: 5px;
+                font-weight: bold;
+                font-size: 14px;
+                span {
+                    font-weight: 300;
                 }
             }
-            .btn-modal {
-                margin-top: 10px;
-                margin-right: 10px;
-            }
+        }
+    }
+    .modal-trailer {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        .btn-trailer {
+            border-radius: 500px;
+            position: fixed;
         }
     }
 }
 
-.new-movie-form {
-    padding: 20px;
-    .btn-modal {
-        margin-top: 10px;
-        margin-right: 10px;
-    }
+.delete-confirmation {
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
-
