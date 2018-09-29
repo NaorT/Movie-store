@@ -5,22 +5,38 @@
     <li class="breadcrumb-item" (click)="showTopRatedMovies()"><a class="movie-type">Top rated</a></li>
     <li class="breadcrumb-item" (click)="showUpcomingMovies()"><a class="movie-type">Upcoming</a></li>
   </ol>
-  <button class="btn my-2 my-sm-0 btn-info" type="submit" (click)="openNewMovieEditor()">Add</button>
+  <button class="btn my-2 my-sm-0 btn-info" type="submit" (click)="openNewMovieEditor()">Add new movie</button>
 </nav>
+
+<section class="container-fluid col-mb">
+  <drag-scroll style="height: 285px; width: 100%; text-align: center;">
+    <img *ngFor="let movie of movieListForView" drag-scroll-item [src]="imageService.getImage('w185',movie.photo)" />
+  </drag-scroll>
+</section>
+
 
 <div class="container">
   <h3 class="header">{{title}}</h3>
   <div class="row">
-    <div class="col-md-3 col-mb" *ngFor="let movie of movieListForView">
-      <app-movie-item data-sal="fade" [movie]=movie (movieEdited)="showMovieCard(movie)"></app-movie-item>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 col-mb" *ngFor="let movie of movieListForView">
+      <app-movie-item data-sal="fade" [movie]=movie (movieEdited)="showMovieCard(movie)" (trailerClicked)="openTrailerView(movie)"></app-movie-item>
     </div>
   </div>
 </div>
 
 <ng-template #movieModal let-modal>
-  <app-movie-modal class="modal-content"  [movie]=currentEditMovie></app-movie-modal>
+  <app-movie-modal class="modal-content" [movie]=currentEditMovie></app-movie-modal>
 </ng-template>
 
 <ng-template #newMovieModal let-modal>
-    <app-movie-editor class="modal-content" (movieEdited)="addNewMovie($event)" [movie]="movie"></app-movie-editor>
-  </ng-template>
+  <app-movie-editor class="modal-content" (movieEdited)="addNewMovie($event)" [movie]="movie"></app-movie-editor>
+</ng-template>
+
+<div *ngIf="isTrailerShown" class="trailer">
+  <button class="btn btn-info btn-trailer" (click)="closeTrailer()"><i class="fas fa-times"></i></button>
+  <iframe *ngIf="trailerPath" width="420" height="315" [src]='trailerPath'
+    frameborder="0" allowfullscreen></iframe>
+  <div *ngIf="!trailerPath" class="not-available">
+    <h3>Trailer not available</h3>
+  </div>
+</div>

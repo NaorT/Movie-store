@@ -1,35 +1,46 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">{{movie.title}}</h4>
-  <div>
-    <span class="modal-action modal-edit badge badge-pill badge-warning" (click)="toggleEditMode()"><i class="fas fa-pen"></i></span>
-    <span class="modal-action modal-delete badge badge-pill badge-warning" (click)="deleteMovie()"><i class="fas fa-trash"></i></span>
-  </div>
-</div>
-<div class="modal-body" [class.blur]="editMode">
-  <div class="row">
-    <div class="col-sm-6 modal-body-img">
-      <img class="shadow-lg" [src]="movie.photo">
-    </div>
-    <div class="col-sm-6 modal-data-container">
-      <div class="modal-data">
-        <p>Release date: <span>{{movie.year}}</span></p>
-      </div>
-      <div class="modal-data">
-        <p>Directed by: <span>{{movie.director}}</span></p>
-      </div>
-      <div class="modal-data">
-        <p>Genre: <span>{{movie.genre}}</span></p>
-      </div>
-      <div class="modal-data">
-          <p>Runtime: <span>{{movie.runtime}} min</span></p>
-        </div>
-      <div class="modal-data">
-        <p>Overview: <span>{{movie.description | slice:0:200}}</span></p>
-      </div>
-    </div>
+<div *ngIf="!wantToDelete" class="modal-header">
+  <h4 class="modal-title">{{movie.title | titlePipe: movie.title}}</h4>
+  <div class="modal-action">
+    <button class="btn-action modal-edit" (click)="toggleEditMode()"><i class="fas fa-pen"></i></button>
+    <button class="btn-action modal-delete" (click)="showConfirmation()"><i class="fas fa-trash"></i></button>
+    <button *ngIf="trailerPath" class="btn-action modal-play" (click)="showTrailerWindow()"><i class="fas fa-play"></i></button>
   </div>
 </div>
 
-<div *ngIf="editMode" class="modal-body">
-  <app-movie-editor class="newModal" (movieEdited)="editMovie($event)" [movie]="curentEditedMovie"></app-movie-editor>
+<div class="delete-confirmation" *ngIf="wantToDelete">
+  <h4>Delete - {{movie.title}}</h4>
+  <button type="submit" class="btn btn-warning btn-modal" (click)="deleteMovie()">Yes</button>
+  <button type="submit" class="btn btn-dark btn-modal" (click)="dismiss()">No</button>
+</div>
+
+<div *ngIf="!wantToDelete" class="modal-body">
+  <div class="row">
+    <div class="col-sm-5 col-sm-12 modal-body-img" [class.blur]="editMode">
+      <img class="shadow-lg" [src]="movieImgSrc">
+    </div>
+    <div class="col-sm-7 col-sm-12">
+      <div class="modal-data" [class.blur]="editMode">
+        <p>Release date: <span>{{movie.year}}</span></p>
+      </div>
+      <div class="modal-data" [class.blur]="editMode">
+        <p>Directed by: <span>{{movie.director | titlePipe: movie.director }}</span></p>
+      </div>
+      <div class="modal-data" [class.blur]="editMode">
+        <p>Genre: <span>{{movie.genre | titlePipe: movie.genre}}</span></p>
+      </div>
+      <div class="modal-data" [class.blur]="editMode">
+        <p>Runtime: <span>{{movie.runtime}} min</span></p>
+      </div>
+      <div class="modal-data" [class.blur]="editMode">
+        <p class="description">Overview: <span>{{movie.description}}</span></p>
+      </div>
+      <div *ngIf="editMode" class="modal-body">
+        <app-movie-editor class="newModal" (movieEdited)="editMovie($event)" [movie]="curentEditedMovie"></app-movie-editor>
+      </div>
+      <div *ngIf="isTrailerShown" class="modal-trailer">
+        <button class="btn btn-info btn-trailer" (click)="closeTrailer()"><i class="fas fa-times"></i></button>
+        <iframe *ngIf="trailerPath" width="420" height="300" [src]='trailerPath' frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </div>
